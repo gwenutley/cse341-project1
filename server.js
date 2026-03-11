@@ -1,10 +1,14 @@
 //require installations
 const express = require("express");
-const mongodb = require("./data/database")
+const bodyParser = require("body-parser");
+const mongodb = require("./data/database");
 const app = express();
 
 const port = process.env.PORT || 3000;
 
+//allow the POST method to work and reading of the object
+app.use(bodyParser.json());
+//go to the routes for the GET methods
 app.use('/', require("./routes"));
 
 mongodb.initDb((err) => {
